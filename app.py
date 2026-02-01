@@ -25,7 +25,7 @@ def closest_color_name(rgb):
 # ----------------------------------------
 def get_dominant_colors(img, n_colors=3):
     # サイズ縮小（処理軽量化）
-    img = img.resize((150, 150))
+    img = img.resize((200, 200))
 
     # RGB配列化
     arr = np.array(img)
@@ -78,10 +78,7 @@ if input_type == "カメラで撮影":
 # ファイルアップロード
 # ----------------------------------------
 else:
-    img_file = st.file_uploader(
-        "画像をアップロード",
-        type=["jpg", "jpeg", "png"]
-    )
+    img_file = st.file_uploader("画像をアップロード",type=["jpg", "jpeg", "png"])
     if img_file:
         img = Image.open(img_file)
 
