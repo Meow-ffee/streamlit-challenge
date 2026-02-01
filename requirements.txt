@@ -1,4 +1,4 @@
 streamlit==1.31.1
-
+pillow
 numpy==1.26.4
 webcolors==1.13
