@@ -24,14 +24,25 @@ def closest_color_name(rgb):
 # 代表色抽出
 # ----------------------------------------
 def get_dominant_colors(img, n_colors=3):
-    img = img.resize((200, 200))
-    arr = np.array(img).reshape((-1, 3))
+    # サイズ縮小（処理軽量化）
+    img = img.resize((150, 150))
 
-    kmeans = KMeans(n_clusters=n_colors, random_state=0)
-    kmeans.fit(arr)
+    # RGB配列化
+    arr = np.array(img)
 
-    centers = np.array(kmeans.cluster_centers_, dtype=int)
-    return centers.tolist()
+    # (H, W, 3) → (H*W, 3)
+    pixels = arr.reshape(-1, 3)
+
+    # 色を少し丸めて近い色をまとめる
+    pixels = (pixels // 16) * 16
+
+    # 出現頻度を数える
+    colors, counts = np.unique(pixels, axis=0, return_counts=True)
+
+    # 出現回数が多い順に並べる
+    sorted_idx = np.argsort(counts)[::-1]
+    dominant_colors = colors[sorted_idx][:n_colors]
+    return dominant_colors.tolist()
 
 # ----------------------------------------
 # UI
