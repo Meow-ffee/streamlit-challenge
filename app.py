@@ -53,14 +53,12 @@ img = None
 # カメラ入力（安全設計）
 # ----------------------------------------
 if input_type == "カメラで撮影":
-    st.subheader("📷 カメラ入力")
-    use_camera = st.checkbox("カメラを起動する")
-    if use_camera:
-        img_file = st.camera_input("撮影")
-        if img_file:
-            img = Image.open(img_file)
+    img_file = st.camera_input("📷 カメラを起動")
+
+    if img_file is None:
+        st.info("💡 カメラの使用を許可すると撮影できます")
     else:
-        st.info("💡 チェックを入れるとカメラが起動します")
+        img = Image.open(img_file)
 
 # ----------------------------------------
 # ファイルアップロード
