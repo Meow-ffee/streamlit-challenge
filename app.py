@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import numpy as np
+from sklearn.cluster import KMeans
 import webcolors
 
 # ----------------------------------------
