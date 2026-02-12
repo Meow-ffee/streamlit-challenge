@@ -48,9 +48,20 @@ def get_dominant_colors(img, n_colors=3):
 # UI
 # ----------------------------------------
 
-st.markdown(
-    "<h1 style='text-align:center;'>📸 カメラ・アップロードでカラー判定</h1>",
-    unsafe_allow_html=True)
+st.markdown("""
+<style>
+.responsive-title {
+    text-align: center;
+    white-space: nowrap;}
+
+/* スマホのときだけ折り返しOKにする */
+@media (max-width: 768px) {
+    .responsive-title {
+        white-space: normal;}
+}
+</style>
+
+<h1 class="responsive-title">📸 カメラ・アップロードでカラー判定</h1>""", unsafe_allow_html=True)
 
 st.write("画像から代表色を抽出して **色名 / HEX / RGB** を表示します。")
 
